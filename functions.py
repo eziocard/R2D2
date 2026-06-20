@@ -139,11 +139,5 @@ def infer(model, tokenizer, categories, answers):
                 f"{answers.get(predicted_category)}"
             )
 
-            if predicted_category in [
-                "ABRIR_PROYECTO",
-                "CREAR_PROYECTO"
-            ]:
-                manejar_proyecto(
-                    predicted_category,
-                    phrase_user
-                )
+            if predicted_category in ["ABRIR_PROYECTO", "CREAR_PROYECTO", "LISTAR_PROYECTOS"]:
+                manejar_proyecto(predicted_category, phrase_user)

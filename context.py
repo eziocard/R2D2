@@ -2,7 +2,8 @@ categories = [
     "ABRIR_PROYECTO",
     "CREAR_PROYECTO",
     "SALUDO",
-    "DESCONOCIDO"
+    "DESCONOCIDO",
+    "LISTAR_PROYECTOS",
 ]
 
 train_dataset = [
@@ -44,6 +45,16 @@ train_dataset = [
     ("quiero comer pizza", 3),
     ("dime un chiste", 3),
     ("cuentame algo", 3),
+
+        # LISTAR PROYECTOS
+    ("muestrame los proyectos", 4),
+    ("que proyectos tengo", 4),
+    ("lista mis proyectos", 4),
+    ("muestra mis proyectos", 4),
+    ("dime que proyectos hay", 4),
+    ("ver mis proyectos", 4),
+    ("cuales son mis proyectos", 4),
+
 ]
 
 answers = {
@@ -56,7 +67,8 @@ answers = {
             "proyectos de desarrollo."
         ),
     "DESCONOCIDO":
-        "No entendí la solicitud."
+        "No entendí la solicitud.",
+    "LISTAR_PROYECTOS": "Revisando tu carpeta de proyectos...",
 }
 
 actions = {

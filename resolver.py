@@ -123,6 +123,23 @@ def crear_proyecto(nombre, tecnologia):
         crear_proyecto_python(ruta)
 
 
+def listar_proyectos():
+    if not PROYECTOS_DIR.exists():
+        print(f" [PROYECTOS]: La carpeta {PROYECTOS_DIR} todavía no existe.")
+        return
+ 
+    proyectos = sorted(p.name for p in PROYECTOS_DIR.iterdir() if p.is_dir())
+ 
+    if not proyectos:
+        print(f" [PROYECTOS]: No hay proyectos todavía en {PROYECTOS_DIR}.")
+        return
+ 
+    print(f" [PROYECTOS]: Tienes {len(proyectos)} proyecto(s) en {PROYECTOS_DIR}:")
+    for nombre in proyectos:
+        print(f"   - {nombre}")
+ 
+
+
 # ==============================================================================
 # PUNTO DE ENTRADA ÚNICO (lo llama infer() desde functions.py)
 # ==============================================================================
@@ -133,3 +150,6 @@ def manejar_proyecto(categoria, frase_original):
     elif categoria == "CREAR_PROYECTO":
         nombre, tecnologia = extraer_datos_crear(frase_original)
         crear_proyecto(nombre, tecnologia)
+
+    elif categoria == "LISTAR_PROYECTOS":
+        listar_proyectos()
