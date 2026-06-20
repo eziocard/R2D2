@@ -1,6 +1,7 @@
 categories = [
     "ABRIR_PROYECTO",
     "CREAR_PROYECTO",
+    "SALUDO",
     "DESCONOCIDO"
 ]
 
@@ -25,22 +26,46 @@ train_dataset = [
     ("quiero crear un proyecto de react llamado dashboard", 1),
     ("crea una aplicación llamada tienda en react", 1),
 
-    # DESCONOCIDO
+    # =====================
+    # SALUDOS
+    # =====================
     ("hola", 2),
+    ("hola r2d2", 2),
+    ("buenas", 2),
+    ("buenos dias", 2),
+    ("buenas tardes", 2),
     ("como estas", 2),
-    ("que hora es", 2),
-    ("quiero comer pizza", 2),
-    ("dime un chiste", 2),
-    ("cuentame algo", 2)
+    ("que tal", 2),
+    ("hola amigo", 2),
+    ("saludos", 2),
+
+    # DESCONOCIDO
+    ("que hora es", 3),
+    ("quiero comer pizza", 3),
+    ("dime un chiste", 3),
+    ("cuentame algo", 3),
 ]
 
 answers = {
     "ABRIR_PROYECTO": "Buscando el proyecto...",
     "CREAR_PROYECTO": "Creando el proyecto...",
-    "DESCONOCIDO": "No entendí la solicitud."
+    "SALUDO":
+        (
+            "Hola, soy R2D2.\n"
+            "Puedo ayudarte a crear y abrir "
+            "proyectos de desarrollo."
+        ),
+    "DESCONOCIDO":
+        "No entendí la solicitud."
 }
 
 actions = {
     "ABRIR_PROYECTO": None,
     "CREAR_PROYECTO": None,
+    "SALUDO":
+        (
+            "Hola, soy R2D2.\n"
+            "Puedo ayudarte a crear y abrir "
+            "proyectos de desarrollo."
+        ),
 }

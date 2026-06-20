@@ -4,7 +4,7 @@ from torch.optim import AdamW
 from transformers import AutoTokenizer,AutoModelForSequenceClassification
 from pathlib import Path
 from resolver import manejar_proyecto
-MODEL_DIR = Path("./modelo")
+MODEL_DIR = Path(__file__).resolve().parent / "modelo"
 
 def load_model(model_base):
     print(f'Descargando modelo {model_base}')
@@ -71,30 +71,78 @@ def fine_tuning(model_base, categories, epochs, inputs, labels):
     model.save_pretrained(MODEL_DIR)
     return model
 
-def infer(model,tokenizer,categories,answers):
+def infer(model, tokenizer, categories, answers):
     model.eval()
+
     while True:
         phrase_user = input("\n>[R2D2] Ingresa un texto: ")
-        if phrase_user.lower() in ['salir','exit','quit']:
+
+        if phrase_user.lower() in [
+            "salir",
+            "exit",
+            "quit"
+        ]:
+            print("[R2D2]: Hasta luego")
             break
-        inputs_user = tokenizer(phrase_user,padding=True,truncation=True,return_tensors="pt")
+
+        inputs_user = tokenizer(
+            phrase_user,
+            padding=True,
+            truncation=True,
+            return_tensors="pt"
+        )
 
         with torch.no_grad():
             outputs = model(**inputs_user)
-            logits = outputs.logits
-            probabilities = torch.nn.functional.softmax(logits,dim=-1)[0]
-            index_winner = torch.argmax(probabilities).item()
-            level_confidence = probabilities[index_winner].item() * 100
-            predicted_category = categories[index_winner]
-            
-            print(f" [R2D2 DETECTA]: Intención -> '{predicted_category}' | Confianza ->{level_confidence:.1f}%")
-            if level_confidence < 40.0:
-                print(
-                    " [R2D2]: Lo siento, no estoy seguro."
-                )
-            else:
-                print(f'[R2D2]: {answers.get(predicted_category,"No tengo una respuesta.")}')
 
+            logits = outputs.logits
+
+            probabilities = (
+                torch.nn.functional.softmax(
+                    logits,
+                    dim=-1
+                )[0]
+            )
+
+            index_winner = torch.argmax(
+                probabilities
+            ).item()
+
+            level_confidence = (
+                probabilities[index_winner].item()
+                * 100
+            )
+
+            predicted_category = (
+                categories[index_winner]
+            )
+
+            #print(
+            #    f" [R2D2 DETECTA]: "
+            #    f"Intención -> "
+            #   f"'{predicted_category}' "
+            #    f"| Confianza -> "
+            #    f"{level_confidence:.1f}%"
+            #)
+
+            if level_confidence < 45:
+                print(
+                    "[R2D2]: "
+                    "No estoy seguro de haber "
+                    "entendido. ¿Puedes "
+                    "reformularlo?"
+                )
+                continue
+
+            print(
+                f"[R2D2]: "
+                f"{answers.get(predicted_category)}"
+            )
+
+            if predicted_category in [
+                "ABRIR_PROYECTO",
+                "CREAR_PROYECTO"
+            ]:
                 manejar_proyecto(
                     predicted_category,
                     phrase_user

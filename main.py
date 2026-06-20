@@ -9,8 +9,7 @@ from functions import (
 from context import train_dataset, categories, answers
 
 MODELO_BASE = "dccuchile/bert-base-spanish-wwm-uncased"
-EPOCHS = 5
-
+EPOCHS = 20
 
 def main():
   
