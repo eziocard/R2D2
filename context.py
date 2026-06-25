@@ -71,13 +71,3 @@ answers = {
     "LISTAR_PROYECTOS": "Revisando tu carpeta de proyectos...",
 }
 
-actions = {
-    "ABRIR_PROYECTO": None,
-    "CREAR_PROYECTO": None,
-    "SALUDO":
-        (
-            "Hola, soy R2D2.\n"
-            "Puedo ayudarte a crear y abrir "
-            "proyectos de desarrollo."
-        ),
-}

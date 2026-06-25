@@ -117,13 +117,13 @@ def infer(model, tokenizer, categories, answers):
                 categories[index_winner]
             )
 
-            #print(
-            #    f" [R2D2 DETECTA]: "
-            #    f"Intención -> "
-            #   f"'{predicted_category}' "
-            #    f"| Confianza -> "
-            #    f"{level_confidence:.1f}%"
-            #)
+            print(
+                f" [R2D2 DETECTA]: "
+                f"Intención -> "
+               f"'{predicted_category}' "
+                f"| Confianza -> "
+                f"{level_confidence:.1f}%"
+            )
 
             if level_confidence < 45:
                 print(

@@ -139,10 +139,6 @@ def listar_proyectos():
         print(f"   - {nombre}")
  
 
-
-# ==============================================================================
-# PUNTO DE ENTRADA ÚNICO (lo llama infer() desde functions.py)
-# ==============================================================================
 def manejar_proyecto(categoria, frase_original):
     if categoria == "ABRIR_PROYECTO":
         nombre = extraer_nombre_abrir(frase_original)
