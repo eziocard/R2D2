@@ -36,6 +36,8 @@ train_dataset = [
     ("buenos dias", 2),
     ("buenas tardes", 2),
     ("como estas", 2),
+    ("¿como estas?",2),
+    ("como estas?", 2),
     ("que tal", 2),
     ("hola amigo", 2),
     ("saludos", 2),
@@ -50,6 +52,8 @@ train_dataset = [
     ("muestrame los proyectos", 4),
     ("que proyectos tengo", 4),
     ("lista mis proyectos", 4),
+    ("listar proyectos",4),
+    ("ver proyectos",4),
     ("muestra mis proyectos", 4),
     ("dime que proyectos hay", 4),
     ("ver mis proyectos", 4),
@@ -60,14 +64,20 @@ train_dataset = [
 answers = {
     "ABRIR_PROYECTO": "Buscando el proyecto...",
     "CREAR_PROYECTO": "Creando el proyecto...",
-    "SALUDO":
-        (
-            "Hola, soy R2D2.\n"
-            "Puedo ayudarte a crear y abrir "
-            "proyectos de desarrollo."
-        ),
-    "DESCONOCIDO":
-        "No entendí la solicitud.",
+    "SALUDO": {
+        "default": [
+            "Hola, soy R2D2. ¿En qué proyecto trabajamos hoy?",
+            "¡Buenas! Listo para abrir o crear proyectos.",
+            "Hey, aquí R2D2. ¿Abrimos algo?",
+        ],
+        "como estas": "Funcionando al 100%. ¿Abrimos un proyecto?",
+        "como estas?": "Funcionando al 100%. ¿Abrimos un proyecto?",
+        "¿como estas?": "Funcionando al 100%. ¿Abrimos un proyecto?",
+        "que tal":    "Todo en orden. ¿En qué te ayudo?",
+        "buenos dias": "¡Buenos días! ¿Arrancamos con algún proyecto?",
+        "buenas tardes": "¡Buenas tardes! ¿Qué construimos hoy?",
+    },
+    "DESCONOCIDO": "No entendí la solicitud.",
     "LISTAR_PROYECTOS": "Revisando tu carpeta de proyectos...",
 }
 
